@@ -1,0 +1,52 @@
+const CartItem = ({ item, increaseQty, decreaseQty, removeItem }) => {
+  return (
+    <div className="flex justify-between items-start mb-6">
+      
+      <div className="flex gap-4">
+        <img
+          src={item.image}
+          alt={item.name}
+          className="w-20 h-20 rounded object-cover"
+        />
+
+        <div>
+          <h3 className="font-semibold">{item.name}</h3>
+
+          <div className="flex items-center gap-3 mt-3">
+            <button
+              onClick={() => decreaseQty(item.id)}
+              className="bg-red-200 px-3 py-1 rounded"
+            >
+              -
+            </button>
+
+            <div className="bg-gray-200 px-4 py-1 rounded">
+              {item.quantity}
+            </div>
+
+            <button
+              onClick={() => increaseQty(item.id)}
+              className="bg-green-200 px-3 py-1 rounded"
+            >
+              +
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="text-right">
+        <p className="font-semibold">#{item.price * item.quantity}</p>
+
+        <button
+          onClick={() => removeItem(item.id)}
+          className="text-sm mt-6"
+        >
+          Remove
+        </button>
+      </div>
+
+    </div>
+  );
+};
+
+export default CartItem;
