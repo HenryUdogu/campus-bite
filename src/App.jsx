@@ -6,12 +6,12 @@ import Menu from "./pages/Menu";
 import Cart from "./pages/Cart";
 import CheckOut from "./pages/CheckOut";
 const App = () => {
-  // ba bla bal
   return (
+
     <Router>
       <Routes>
-        <Route path="/" element={<Home />}/>
-        <Route path="/signup" element={<Signup />}/>
+        <Route path="/" element={<Home />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/menu"  element={<Menu/>} />
         <Route path="/cart"  element={<Cart/>}/>

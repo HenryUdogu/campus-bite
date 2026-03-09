@@ -1,52 +1,73 @@
 const Footer = () => {
   return (
-    <div className="bg-black flex flex-row justify-around h-50 p-8">
-      <div className="flex flex-col justify-around">
-        <div className="flex">
-          <img src="/vite.svg" alt="logo" />
-          <h1 className="text-2xl text-orange-400 font-bold">CampusBite</h1>
-        </div>
-        <div className="flex flex-row gap-2">
-          <img src="" alt="icon" className="text-white"/>
-          <img src="" alt="icon" className="text-white"/>
-          <img src="" alt="icon" className="text-white"/>
-        </div>
-      </div>
-      <div className="flex flex-col">
-        <h1 className="text-2xl text-white">Get to Know Us</h1>
-        <ul className="text-white">
-          <li className="text-white">About Us</li>
-          <li className="text-white">Career</li>
-          <li className="text-white">Blogs</li>
-          <li className="text-white">Discover</li>
-        </ul>
-      </div>
-      <div className="flex flex-col">
-        <h1 className="text-white text-2xl">Let us help You</h1>
-        <ul>
-          <li className="text-white">Account Details</li>
-          <li className="text-white">Order History</li>
-          <li className="text-white">Help</li>
-        </ul>
-      </div>
-      <div className="flex flex-col">
-        <h1 className="text-white text-2xl">Doing Buisness</h1>
-        <ul>
-          <li className="text-white">Sell on CampusBite</li>
-          <li className="text-white" >Get CampusBite for Buisness</li>
-        </ul>
-      </div>
-      <div className="flex flex-col">
-        <h1 className="text-white text-2xl">Terms and Conditions</h1>
-        <ul>
-          <li className="text-white">Privacy</li>
-          <li className="text-white">Cookies</li>
-          <li className="text-white">Resource</li>
-          <li className="text-white">Places</li>
-        </ul>
-      </div>
-    </div>
-  )
-}
+    <div className="bg-black px-8 py-10">
 
-export default Footer
+      
+      <div className="flex flex-col md:flex-row flex-wrap justify-around gap-10">
+
+        
+        <div className="flex flex-col gap-4">
+          <div className="flex items-center">
+            <img src="/vite.svg" alt="logo" />
+            <h1 className="text-2xl text-orange-400 font-bold">CampusBite</h1>
+          </div>
+          <div className="flex flex-row gap-3">
+            <img src="" alt="icon" className="w-6 h-6" />
+            <img src="" alt="icon" className="w-6 h-6" />
+            <img src="" alt="icon" className="w-6 h-6" />
+          </div>
+        </div>
+
+        
+        <div className="flex flex-col gap-2">
+          <h1 className="text-xl text-white font-semibold">Get to Know Us</h1>
+          <ul className="flex flex-col gap-1 text-gray-400 text-sm">
+            <li>About Us</li>
+            <li>Career</li>
+            <li>Blogs</li>
+            <li>Discover</li>
+          </ul>
+        </div>
+
+        
+        <div className="flex flex-col gap-2">
+          <h1 className="text-xl text-white font-semibold">Let Us Help You</h1>
+          <ul className="flex flex-col gap-1 text-gray-400 text-sm">
+            <li>Account Details</li>
+            <li>Order History</li>
+            <li>Help</li>
+          </ul>
+        </div>
+
+       
+        <div className="flex flex-col gap-2">
+          <h1 className="text-xl text-white font-semibold">Doing Business</h1>
+          <ul className="flex flex-col gap-1 text-gray-400 text-sm">
+            <li>Sell on CampusBite</li>
+            <li>Get CampusBite for Business</li>
+          </ul>
+        </div>
+
+        
+        <div className="flex flex-col gap-2">
+          <h1 className="text-xl text-white font-semibold">Terms and Conditions</h1>
+          <ul className="flex flex-col gap-1 text-gray-400 text-sm">
+            <li>Privacy</li>
+            <li>Cookies</li>
+            <li>Resource</li>
+            <li>Places</li>
+          </ul>
+        </div>
+
+      </div>
+
+      
+      <div className="border-t border-gray-700 mt-10 pt-4 text-center text-gray-500 text-sm">
+        © {new Date().getFullYear()} CampusBite. All rights reserved.
+      </div>
+
+    </div>
+  );
+};
+
+export default Footer;

@@ -2,8 +2,10 @@ import { useState } from "react";
 import CartItem from "../components/CartItem";
 import CartTop from "../components/CartTop";
 import { useNavigate } from "react-router-dom";
+
 const Cart = () => {
   const navigate = useNavigate();
+
   const [cartItems, setCartItems] = useState([
     {
       id: 1,
@@ -23,7 +25,6 @@ const Cart = () => {
 
   const deliveryFee = 500;
 
-
   const increaseQty = (id) => {
     setCartItems((prev) =>
       prev.map((item) =>
@@ -33,7 +34,6 @@ const Cart = () => {
       )
     );
   };
-
 
   const decreaseQty = (id) => {
     setCartItems((prev) =>
@@ -45,11 +45,9 @@ const Cart = () => {
     );
   };
 
-
   const removeItem = (id) => {
     setCartItems((prev) => prev.filter((item) => item.id !== id));
   };
-
 
   const subtotal = cartItems.reduce(
     (acc, item) => acc + item.price * item.quantity,
@@ -60,8 +58,9 @@ const Cart = () => {
 
   return (
     <div>
-      <CartTop/>
-      <div className="bg-orange-100 p-6 m-10 rounded">
+      <CartTop />
+
+      <div className="bg-orange-100 p-4 md:p-6 mx-4 md:mx-10 my-6 rounded-xl">
 
         {cartItems.map((item) => (
           <CartItem
@@ -73,21 +72,19 @@ const Cart = () => {
           />
         ))}
 
-
         <input
           type="text"
           placeholder="Add a Note....."
           className="w-full p-2 rounded bg-gray-200 mb-4"
         />
 
-
-        <div className="space-y-1">
-          <div className="flex justify-between italic">
+        <div className="space-y-2">
+          <div className="flex justify-between italic text-sm md:text-base">
             <p>Subtotal</p>
             <p>#{subtotal}</p>
           </div>
 
-          <div className="flex justify-between italic">
+          <div className="flex justify-between italic text-sm md:text-base">
             <p>Delivery fee</p>
             <p>#{deliveryFee}</p>
           </div>
@@ -98,7 +95,10 @@ const Cart = () => {
           </div>
         </div>
 
-        <button className="w-full mt-6 bg-orange-600 text-black font-bold py-3 rounded" onClick={() => navigate("/checkout")}>
+        <button
+          className="w-full mt-6 bg-orange-600 text-black font-bold py-3 rounded-lg"
+          onClick={() => navigate("/checkout")}
+        >
           PROCEED TO CHECKOUT
         </button>
 

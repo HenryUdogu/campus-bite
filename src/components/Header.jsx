@@ -1,30 +1,75 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Menu, X } from "lucide-react";
+import { useState } from "react";
 
 const Header = () => {
+    const [open, setOpen] = useState(false);
+
     return (
-        <div>
-            <nav className="flex flex-row px-6 py-5 bg-orange-100 items-center justify-around">
-                <div className="flex">
+        <nav className="bg-orange-100 px-6 py-5">
+
+            <div className="flex items-center justify-between max-w-7xl mx-auto">
+
+               
+                <div className="flex items-center gap-2">
                     <img src="/vite.svg" alt="logo" />
                     <h1 className="text-2xl text-orange-400 font-bold">CampusBite</h1>
                 </div>
-                <div className="flex gap-20 items-center ml-10">
-                    <ul className="flex flex-row gap-9">
-                        <li className="text-xl">Home</li>
-                        <li className="text-xl">Services</li>
-                        <li className="text-xl">Blog</li>
-                        <li className="text-xl">About Us</li>
+
+                
+                <div className="hidden md:flex gap-20 items-center">
+
+                    <ul className="flex gap-9">
+                        <li className="text-xl">
+                            <a href="#home">Home</a>
+                        </li>
+
+                        <li className="text-xl">
+                            <a href="#services">Services</a>
+                        </li>
+
+                        <li className="text-xl">
+                            <a href="#blog">Blog</a>
+                        </li>
+
+                        <li className="text-xl">
+                            <a href="#about">About Us</a>
+                        </li>
                     </ul>
-                    <button className="bg-orange-400 flex flex-row h-10 w-45 gap-9 rounded-2xl items-center p-2">
+
+                    <button className="bg-orange-400 flex items-center gap-2 rounded-2xl px-4 py-2">
                         <p className="text-white">Deliver with us</p>
-                        <div className="text-white"><ArrowRight /></div>
+                        <ArrowRight className="text-white" />
                     </button>
-                
                 </div>
+
                 
-            </nav>
-        </div>
-    )
-}
+                <div className="md:hidden">
+                    <button onClick={() => setOpen(!open)}>
+                        {open ? <X /> : <Menu />}
+                    </button>
+                </div>
+
+            </div>
+
+            
+            {open && (
+                <div className="md:hidden mt-4 flex flex-col gap-4 items-center">
+
+                    <a href="#home" onClick={() => setOpen(false)}>Home</a>
+                    <a href="#services" onClick={() => setOpen(false)}>Services</a>
+                    <a href="#blog" onClick={() => setOpen(false)}>Blog</a>
+                    <a href="#about" onClick={() => setOpen(false)}>About Us</a>
+
+                    <button className="bg-orange-400 flex items-center gap-2 rounded-2xl px-4 py-2">
+                        <p className="text-white">Deliver with us</p>
+                        <ArrowRight className="text-white" />
+                    </button>
+
+                </div>
+            )}
+
+        </nav>
+    );
+};
 
 export default Header;
