@@ -43,7 +43,7 @@ const Signup = () => {
       return;
     }
 
-    // Save to users table
+   
     const { error: insertError } = await supabase.from("users").insert({
       id: data.user.id,
       first_name: firstName,
