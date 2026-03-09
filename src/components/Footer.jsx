@@ -63,7 +63,7 @@ const Footer = () => {
 
       
       <div className="border-t border-gray-700 mt-10 pt-4 text-center text-gray-500 text-sm">
-        © {new Date().getFullYear()} CampusBite. All rights reserved.
+         {new Date().getFullYear()} CampusBite. All rights reserved.
       </div>
 
     </div>
@@ -71,3 +71,4 @@ const Footer = () => {
 };
 
 export default Footer;
+// sjfgvazjlycsosnmuaum

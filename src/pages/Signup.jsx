@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { supabase } from "../supabaseClient";
 
 const Signup = () => {
   const [firstName, setFirstName] = useState("");
@@ -9,22 +9,56 @@ const Signup = () => {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
+    setError(null);
 
-    const formData = {
-      firstName,
-      lastName,
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
+
+    setLoading(true);
+
+    const { data, error: signupError } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          first_name: firstName,
+          last_name: lastName,
+          phone,
+        },
+      },
+    });
+
+    if (signupError) {
+      setError(signupError.message);
+      setLoading(false);
+      return;
+    }
+
+    // Save to users table
+    const { error: insertError } = await supabase.from("users").insert({
+      id: data.user.id,
+      first_name: firstName,
+      last_name: lastName,
       email,
       phone,
-      password,
-      confirmPassword,
-    };
+    });
 
-    console.log(formData);
+    if (insertError) {
+      setError(insertError.message);
+      setLoading(false);
+      return;
+    }
+
+    setLoading(false);
     navigate("/signin");
   }
 
@@ -38,11 +72,15 @@ const Signup = () => {
           <h1 className="text-2xl md:text-3xl font-bold">Customer Form</h1>
         </div>
 
+        {error && (
+          <p className="text-red-500 text-sm font-semibold mb-4 text-center">
+            {error}
+          </p>
+        )}
+
         <div className="flex flex-col md:flex-row gap-4">
           <div className="flex flex-col w-full my-2">
-            <label className="font-semibold text-lg md:text-[20px]">
-              First Name
-            </label>
+            <label className="font-semibold text-lg md:text-[20px]">First Name</label>
             <input
               type="text"
               value={firstName}
@@ -52,11 +90,8 @@ const Signup = () => {
               required
             />
           </div>
-
           <div className="flex flex-col w-full my-2">
-            <label className="font-semibold text-lg md:text-[20px]">
-              Last Name
-            </label>
+            <label className="font-semibold text-lg md:text-[20px]">Last Name</label>
             <input
               type="text"
               value={lastName}
@@ -81,9 +116,7 @@ const Signup = () => {
         </div>
 
         <div className="flex flex-col w-full my-2">
-          <label className="font-semibold text-lg md:text-[20px]">
-            Mobile Number
-          </label>
+          <label className="font-semibold text-lg md:text-[20px]">Mobile Number</label>
           <input
             type="number"
             value={phone}
@@ -95,9 +128,7 @@ const Signup = () => {
         </div>
 
         <div className="flex flex-col w-full my-2">
-          <label className="font-semibold text-lg md:text-[20px]">
-            Password
-          </label>
+          <label className="font-semibold text-lg md:text-[20px]">Password</label>
           <input
             type="password"
             value={password}
@@ -109,9 +140,7 @@ const Signup = () => {
         </div>
 
         <div className="flex flex-col w-full my-2">
-          <label className="font-semibold text-lg md:text-[20px]">
-            Confirm Password
-          </label>
+          <label className="font-semibold text-lg md:text-[20px]">Confirm Password</label>
           <input
             type="password"
             value={confirmPassword}
@@ -125,19 +154,18 @@ const Signup = () => {
         <div className="w-full my-3 font-semibold text-sm md:text-base">
           <p>
             By tapping "Sign Up" you agree to CampusBite{" "}
-            <a href="#" className="text-orange-600">
-              Terms and Condition
-            </a>
-            . We may text you a verification code. Msg & data rates apply.
+            <a href="#" className="text-orange-600">Terms and Condition</a>.
+            We may text you a verification code. Msg & data rates apply.
           </p>
         </div>
 
         <div className="flex flex-col w-full my-2">
           <button
             type="submit"
+            disabled={loading}
             className="min-h-[48px] rounded-2xl font-bold text-xl md:text-2xl bg-amber-600 text-white"
           >
-            Sign Up
+            {loading ? "Creating account..." : "Sign Up"}
           </button>
         </div>
 
@@ -152,11 +180,7 @@ const Signup = () => {
             type="button"
             className="w-full min-h-[48px] border border-black rounded-2xl font-bold text-sm sm:text-base md:text-lg bg-white flex justify-center items-center gap-2 sm:gap-3 px-4 py-2"
           >
-            <img
-              src="/google.svg"
-              alt="Google logo"
-              className="w-5 h-5 sm:w-6 sm:h-6"
-            />
+            <img src="/google.svg" alt="Google logo" className="w-5 h-5 sm:w-6 sm:h-6" />
             <span>Continue with Google</span>
           </button>
         </div>
@@ -166,11 +190,7 @@ const Signup = () => {
             type="button"
             className="w-full min-h-[48px] border border-black rounded-2xl font-bold text-sm sm:text-base md:text-lg bg-white flex justify-center items-center gap-2 sm:gap-3 px-4 py-2"
           >
-            <img
-              src="/apple.svg"
-              alt="Apple logo"
-              className="w-5 h-5 sm:w-6 sm:h-6"
-            />
+            <img src="/apple.svg" alt="Apple logo" className="w-5 h-5 sm:w-6 sm:h-6" />
             <span>Continue with Apple</span>
           </button>
         </div>
@@ -178,9 +198,7 @@ const Signup = () => {
         <div className="w-full my-2 text-right font-semibold text-sm md:text-base">
           <p>
             Already have an account{" "}
-            <Link to="/signin" className="text-orange-500 font-semibold">
-              Login Here
-            </Link>
+            <Link to="/signin" className="text-orange-500 font-semibold">Login Here</Link>
           </p>
         </div>
       </form>

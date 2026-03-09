@@ -9,13 +9,13 @@ const Header = () => {
 
             <div className="flex items-center justify-between max-w-7xl mx-auto">
 
-               
+
                 <div className="flex items-center gap-2">
                     <img src="/vite.svg" alt="logo" />
                     <h1 className="text-2xl text-orange-400 font-bold">CampusBite</h1>
                 </div>
 
-                
+
                 <div className="hidden md:flex gap-20 items-center">
 
                     <ul className="flex gap-9">
@@ -42,7 +42,7 @@ const Header = () => {
                     </button>
                 </div>
 
-                
+
                 <div className="md:hidden">
                     <button onClick={() => setOpen(!open)}>
                         {open ? <X /> : <Menu />}
@@ -51,7 +51,7 @@ const Header = () => {
 
             </div>
 
-            
+
             {open && (
                 <div className="md:hidden mt-4 flex flex-col gap-4 items-center">
 
