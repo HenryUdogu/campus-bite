@@ -169,13 +169,6 @@ const Signup = () => {
           </button>
         </div>
 
-        <div className="relative flex py-5 items-center">
-          <div className="grow border-t border-gray-500"></div>
-          <span className="mx-4 text-black">or</span>
-          <div className="grow border-t border-gray-500"></div>
-        </div>
-
-
         <div className="w-full my-2 text-right font-semibold text-sm md:text-base">
           <p>
             Already have an account{" "}
