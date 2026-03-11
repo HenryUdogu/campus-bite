@@ -52,7 +52,7 @@ const Signin = () => {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="h-12 border border-black rounded-2xl px-4"
+            className="h-12 border border-orange-300 rounded-2xl px-4 bg-white"
             placeholder="Enter your Email"
             required
           />
@@ -64,7 +64,7 @@ const Signin = () => {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="h-12 border border-black rounded-2xl px-4"
+            className="h-12 border border-orange-300 rounded-2xl px-4 bg-white"
             placeholder="Enter your Password"
             required
           />

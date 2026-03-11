@@ -23,7 +23,7 @@ const Top = () => {
             className="flex bg-orange-400 rounded-2xl h-10 items-center px-4 gap-3 text-white whitespace-nowrap"
             onClick={() => navigate("/signup")}
           >
-            Order Now <ArrowRight size={18} />
+            Deliver with Us <ArrowRight size={18} />
           </button>
           <button
             className="flex bg-white rounded-2xl h-10 items-center px-4 gap-3 border border-amber-500 text-orange-400 whitespace-nowrap"

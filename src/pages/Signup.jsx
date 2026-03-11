@@ -85,7 +85,7 @@ const Signup = () => {
               type="text"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
-              className="h-12 border border-black rounded-2xl px-4"
+              className="h-12 border border-orange-300 rounded-2xl px-4 bg-white"
               placeholder="Enter your First name"
               required
             />
@@ -96,7 +96,7 @@ const Signup = () => {
               type="text"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
-              className="h-12 border border-black rounded-2xl px-4"
+              className="h-12 border border-orange-300 rounded-2xl px-4 bg-white"
               placeholder="Enter your Last name"
               required
             />
@@ -109,7 +109,7 @@ const Signup = () => {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="h-12 border border-black rounded-2xl px-4"
+            className="h-12 border border-orange-300 rounded-2xl px-4 bg-white"
             placeholder="Enter your Email"
             required
           />
@@ -121,7 +121,7 @@ const Signup = () => {
             type="number"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
-            className="h-12 border border-black rounded-2xl px-4"
+            className="h-12 border border-orange-300 rounded-2xl px-4 bg-white"
             placeholder="Enter your Phone Number"
             required
           />
@@ -133,7 +133,7 @@ const Signup = () => {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="h-12 border border-black rounded-2xl px-4"
+            className="h-12 border border-orange-300 rounded-2xl px-4 bg-white"
             placeholder="Enter your Password"
             required
           />
@@ -145,7 +145,7 @@ const Signup = () => {
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            className="h-12 border border-black rounded-2xl px-4"
+            className="h-12 border border-orange-300 rounded-2xl px-4 bg-white"
             placeholder="Confirm Your Password"
             required
           />
@@ -175,25 +175,6 @@ const Signup = () => {
           <div className="grow border-t border-gray-500"></div>
         </div>
 
-        <div className="flex flex-col w-full my-2">
-          <button
-            type="button"
-            className="w-full min-h-[48px] border border-black rounded-2xl font-bold text-sm sm:text-base md:text-lg bg-white flex justify-center items-center gap-2 sm:gap-3 px-4 py-2"
-          >
-            <img src="/google.svg" alt="Google logo" className="w-5 h-5 sm:w-6 sm:h-6" />
-            <span>Continue with Google</span>
-          </button>
-        </div>
-
-        <div className="flex flex-col w-full my-2">
-          <button
-            type="button"
-            className="w-full min-h-[48px] border border-black rounded-2xl font-bold text-sm sm:text-base md:text-lg bg-white flex justify-center items-center gap-2 sm:gap-3 px-4 py-2"
-          >
-            <img src="/apple.svg" alt="Apple logo" className="w-5 h-5 sm:w-6 sm:h-6" />
-            <span>Continue with Apple</span>
-          </button>
-        </div>
 
         <div className="w-full my-2 text-right font-semibold text-sm md:text-base">
           <p>
