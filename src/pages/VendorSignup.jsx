@@ -1,0 +1,230 @@
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { supabase } from "../supabaseClient";
+
+const VendorSignup = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [shopName, setShopName] = useState("");
+  const [cacId, setCacId] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setError(null);
+
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
+
+    setLoading(true);
+
+    const { data, error: signupError } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          first_name: firstName,
+          last_name: lastName,
+          phone,
+        },
+      },
+    });
+
+    if (signupError) {
+      setError(signupError.message);
+      setLoading(false);
+      return;
+    }
+
+    const { error: insertError } = await supabase.from("users").insert({
+      id: data.user.id,
+      first_name: firstName,
+      last_name: lastName,
+      email,
+      phone,
+    });
+
+    if (insertError) {
+      setError(insertError.message);
+      setLoading(false);
+      return;
+    }
+
+    setLoading(false);
+    navigate("/signin");
+  }
+
+  return (
+    <div className="min-h-screen px-4 md:px-[10%] py-10 flex justify-center items-start">
+      <form
+        className="w-full md:w-[70%] lg:w-[55%] px-4 md:px-10 py-6 rounded-3xl bg-orange-100"
+        onSubmit={handleSubmit}
+      >
+        <div className="flex justify-center items-center mb-5">
+          <h1 className="text-2xl md:text-3xl font-bold">Customer Form</h1>
+        </div>
+
+        {error && (
+          <p className="text-red-500 text-sm font-semibold mb-4 text-center">
+            {error}
+          </p>
+        )}
+
+        <div className="flex flex-col md:flex-row gap-4">
+          <div className="flex flex-col w-full my-2">
+            <label className="font-semibold text-lg md:text-[20px]">
+              First Name
+            </label>
+            <input
+              type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              className="h-12 border border-orange-300 rounded-2xl px-4 bg-white"
+              placeholder="Enter your First name"
+              required
+            />
+          </div>
+          <div className="flex flex-col w-full my-2">
+            <label className="font-semibold text-lg md:text-[20px]">
+              Last Name
+            </label>
+            <input
+              type="text"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              className="h-12 border border-orange-300 rounded-2xl px-4 bg-white"
+              placeholder="Enter your Last name"
+              required
+            />
+          </div>
+        </div>
+
+        <div className="flex flex-col w-full my-2">
+          <label className="font-semibold text-lg md:text-[20px]">Email</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="h-12 border border-orange-300 rounded-2xl px-4 bg-white"
+            placeholder="Enter your Email"
+            required
+          />
+        </div>
+
+        <div className="flex flex-col w-full my-2">
+          <label className="font-semibold text-lg md:text-[20px]">
+            Mobile Number
+          </label>
+          <input
+            type="number"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            className="h-12 border border-orange-300 rounded-2xl px-4 bg-white"
+            placeholder="Enter your Phone Number"
+            required
+          />
+        </div>
+
+        <div className="flex flex-col w-full my-2">
+          <label className="font-semibold text-lg md:text-[20px]">
+            Shop Name
+          </label>
+          <input
+            type="number"
+            value={shopName}
+            onChange={(e) => setShopName(e.target.value)}
+            className="h-12 border border-orange-300 rounded-2xl px-4 bg-white"
+            placeholder="Enter your Shop Name"
+            required
+          />
+        </div>
+
+        <div className="flex flex-col w-full my-2">
+          <label className="font-semibold text-lg md:text-[20px]">
+            CAC ID
+          </label>
+          <input
+            type="number"
+            value={cacId}
+            onChange={(e) => setCacId(e.target.value)}
+            className="h-12 border border-orange-300 rounded-2xl px-4 bg-white"
+            placeholder="Enter your CAC ID"
+            required
+          />
+        </div>
+
+        <div className="flex flex-col w-full my-2">
+          <label className="font-semibold text-lg md:text-[20px]">
+            Password
+          </label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="h-12 border border-orange-300 rounded-2xl px-4 bg-white"
+            placeholder="Enter your Password"
+            required
+          />
+        </div>
+
+        <div className="flex flex-col w-full my-2">
+          <label className="font-semibold text-lg md:text-[20px]">
+            Confirm Password
+          </label>
+          <input
+            type="password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            className="h-12 border border-orange-300 rounded-2xl px-4 bg-white"
+            placeholder="Confirm Your Password"
+            required
+          />
+        </div>
+
+        <div className="w-full my-3 font-semibold text-sm md:text-base">
+          <p>
+            By tapping "Sign Up" you agree to CampusBite{" "}
+            <a href="#" className="text-orange-600">
+              Terms and Condition
+            </a>
+            . We may text you a verification code. Msg & data rates apply.
+          </p>
+        </div>
+
+        <div className="flex flex-col w-full my-2">
+          <button
+            type="submit"
+            disabled={loading}
+            className="min-h-[48px] rounded-2xl font-bold text-xl md:text-2xl bg-amber-600 text-white"
+          >
+            {loading ? "Creating account..." : "Sign Up"}
+          </button>
+        </div>
+
+        <div className="w-full my-2 text-right font-semibold text-sm md:text-base">
+          <p>
+            Already have an account{" "}
+            <Link to="/signin" className="text-orange-500 font-semibold">
+              Login Here
+            </Link>
+          </p>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default VendorSignup;
+
+
+
+

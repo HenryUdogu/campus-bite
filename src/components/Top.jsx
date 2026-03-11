@@ -27,7 +27,7 @@ const Top = () => {
           </button>
           <button
             className="flex bg-white rounded-2xl h-10 items-center px-4 gap-3 border border-amber-500 text-orange-400 whitespace-nowrap"
-            onClick={() => navigate("/signup")}
+            onClick={() => navigate("/VendorSignup")}
           >
             Become a Vendor <ArrowRight size={18} />
           </button>
