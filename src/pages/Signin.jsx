@@ -26,8 +26,28 @@ const Signin = () => {
       return;
     }
 
+    const { data: { user } } = await supabase.auth.getUser();
+
+    const { data: profile, error: profileError } = await supabase
+      .from("users")
+      .select("role")
+      .eq("id", user.id)
+      .single();
+
+    if (profileError) {
+      setError(profileError.message);
+      setLoading(false);
+      return;
+    }
+
     setLoading(false);
-    navigate("/menu");
+    if (profile.role === "vendor") {
+      navigate("/vendor-dashboard", { replace: true });
+    } else if (profile.role === "rider") {
+      navigate("/rider-dashboard", { replace: true });
+    } else {
+      navigate("/menu", { replace: true });
+    }
   }
 
   return (
@@ -52,7 +72,7 @@ const Signin = () => {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="h-12 border border-orange-300 rounded-2xl px-4 bg-white"
+            className="h-12 border border-black rounded-2xl px-4"
             placeholder="Enter your Email"
             required
           />
@@ -64,7 +84,7 @@ const Signin = () => {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="h-12 border border-orange-300 rounded-2xl px-4 bg-white"
+            className="h-12 border border-black rounded-2xl px-4"
             placeholder="Enter your Password"
             required
           />

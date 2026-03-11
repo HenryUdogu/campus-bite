@@ -1,7 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-const Card = ({ image, title, desc }) => {
+const Card = ({ image, title, desc, path }) => {
   const navigate = useNavigate();
   return (
     <div className="bg-white rounded-2xl shadow-md p-6 sm:p-8 w-full max-w-sm text-center flex flex-col items-center">
@@ -14,7 +14,7 @@ const Card = ({ image, title, desc }) => {
       <p className="text-gray-600 text-sm sm:text-base mb-6">{desc}</p>
       <button
         className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-full flex items-center justify-center gap-2 mx-auto mt-auto"
-        onClick={() => navigate("/signup")}
+        onClick={() => navigate(path)}
       >
         Start Now
         <ArrowRight size={18} />
