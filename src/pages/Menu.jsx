@@ -20,30 +20,6 @@ const Menu = () => {
     <div>
       <MenuTop />
 
-      <div className="flex flex-wrap gap-4 px-4 md:px-10 py-6 items-center">
-        <h1 className="text-2xl md:text-3xl font-bold mr-4">
-          Popular Near You
-        </h1>
-
-        <div className="bg-gray-200 px-3 py-1 rounded-lg text-sm">
-          Offers
-        </div>
-
-        <div className="bg-gray-200 px-3 py-1 rounded-lg flex items-center gap-1 text-sm">
-          <p>Over 4.5</p>
-          <Star size={16} />
-        </div>
-
-        <div className="bg-gray-200 px-3 py-1 rounded-lg text-sm">
-          Under 30 mins
-        </div>
-
-        <div className="bg-gray-200 px-3 py-1 rounded-lg flex items-center gap-1 text-sm">
-          <p>Price</p>
-          <ChevronDown size={16} />
-        </div>
-      </div>
-
       <div className="bg-orange-100 p-4 md:p-8 mx-4 md:mx-10 rounded-xl">
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
