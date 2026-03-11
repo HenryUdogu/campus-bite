@@ -71,4 +71,3 @@ const Footer = () => {
 };
 
 export default Footer;
-// sjfgvazjlycsosnmuaum
