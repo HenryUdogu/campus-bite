@@ -6,7 +6,6 @@ const Started = () => {
       
       <div className="flex justify-center items-center mt-8 bg-orange-100 w-fit mx-auto rounded-2xl overflow-hidden">
         <button className="bg-orange-400 rounded-2xl h-10 px-6 text-white">As Vendor</button>
-        <button className="bg-white rounded-2xl h-10 px-6 border border-amber-500 text-orange-400">As Rider</button>
       </div>
 
       

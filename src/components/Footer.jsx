@@ -8,13 +8,13 @@ const Footer = () => {
         
         <div className="flex flex-col gap-4">
           <div className="flex items-center">
-            <img src="/vite.svg" alt="logo" />
+            <img src="/images/logo.png" alt="logo" className="size-12" />
             <h1 className="text-2xl text-orange-400 font-bold">CampusBite</h1>
           </div>
           <div className="flex flex-row gap-3">
-            <img src="" alt="icon" className="w-6 h-6" />
-            <img src="" alt="icon" className="w-6 h-6" />
-            <img src="" alt="icon" className="w-6 h-6" />
+            <img src="/images/facebook.svg" alt="icon" className="bg-white size-6 p-1 rounded" />
+            <img src="/images/instagram.svg" alt="icon" className="bg-white size-6 p-1 rounded" />
+            <img src="/images/x.svg" alt="icon" className="bg-white size-6 p-1 rounded" />
           </div>
         </div>
 
