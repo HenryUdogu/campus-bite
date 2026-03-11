@@ -1,7 +1,15 @@
-import { ShoppingCart, Search } from "lucide-react";
-import { Link } from "react-router-dom";
+import { ShoppingCart, Search, LogOut } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { supabase } from "../supabaseClient";
 
 const MenuTop = () => {
+  const navigate = useNavigate();
+
+  async function handleLogout() {
+    await supabase.auth.signOut();
+    navigate("/signin", { replace: true });
+  }
+
   return (
     <nav className="flex flex-col md:flex-row gap-4 md:gap-0 px-4 md:px-6 py-4 bg-orange-100 items-center justify-between">
       <Link to="/">
@@ -16,7 +24,6 @@ const MenuTop = () => {
       <div className="flex items-center gap-4 md:gap-10 w-full md:w-auto">
         <div className="relative w-full md:w-80">
           <Search className="absolute left-3 top-3" size={18} />
-
           <input
             type="text"
             placeholder="Search restaurants..."
@@ -27,6 +34,14 @@ const MenuTop = () => {
         <Link to="/cart">
           <ShoppingCart size={32} />
         </Link>
+
+        <button
+          onClick={handleLogout}
+          className="flex items-center gap-2 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-xl font-semibold"
+        >
+          <LogOut size={18} />
+          <span className="hidden sm:inline">Logout</span>
+        </button>
       </div>
     </nav>
   );
