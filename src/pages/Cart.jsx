@@ -61,7 +61,6 @@ const Cart = () => {
       <CartTop />
 
       <div className="bg-orange-100 p-4 md:p-6 mx-4 md:mx-10 my-6 rounded-xl">
-
         {cartItems.map((item) => (
           <CartItem
             key={item.id}
@@ -72,15 +71,15 @@ const Cart = () => {
           />
         ))}
 
-        <input
-          type="text"
-          placeholder="Add a Note....."
-          className="w-full p-2 rounded bg-gray-200 mb-4"
-        />
+        <div className="relative flex py-5 items-center">
+          <div className=" grow border-t border-gray-500"></div>
+          <span className=" shrink mx-4 text-black">or</span>
+          <div className="grow border-t border-gray-500"></div>
+        </div>
 
         <div className="space-y-2">
           <div className="flex justify-between italic text-sm md:text-base">
-            <p>Subtotal</p>
+            <p>Total</p>
             <p>#{subtotal}</p>
           </div>
 
@@ -101,7 +100,6 @@ const Cart = () => {
         >
           PROCEED TO CHECKOUT
         </button>
-
       </div>
     </div>
   );

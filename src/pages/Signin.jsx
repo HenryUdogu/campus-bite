@@ -52,7 +52,7 @@ const Signin = () => {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="h-12 border border-black rounded-2xl px-4"
+            className="h-12 border border-orange-300 rounded-2xl px-4 bg-white"
             placeholder="Enter your Email"
             required
           />
@@ -64,7 +64,7 @@ const Signin = () => {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="h-12 border border-black rounded-2xl px-4"
+            className="h-12 border border-orange-300 rounded-2xl px-4 bg-white"
             placeholder="Enter your Password"
             required
           />
@@ -83,32 +83,6 @@ const Signin = () => {
             className="min-h-[48px] rounded-2xl font-bold text-xl md:text-2xl bg-amber-600 text-white"
           >
             {loading ? "Signing in..." : "Sign In"}
-          </button>
-        </div>
-
-        <div className="relative flex py-5 items-center">
-          <div className="grow border-t border-gray-500"></div>
-          <span className="mx-4 text-black">or</span>
-          <div className="grow border-t border-gray-500"></div>
-        </div>
-
-        <div className="flex flex-col w-full my-2">
-          <button
-            type="button"
-            className="w-full min-h-[48px] border border-black rounded-2xl font-bold text-sm sm:text-base md:text-lg bg-white flex justify-center items-center gap-2 sm:gap-3 px-4 py-2"
-          >
-            <img src="/google.svg" alt="Google logo" className="w-5 h-5 sm:w-6 sm:h-6" />
-            <span>Continue with Google</span>
-          </button>
-        </div>
-
-        <div className="flex flex-col w-full my-2">
-          <button
-            type="button"
-            className="w-full min-h-[48px] border border-black rounded-2xl font-bold text-sm sm:text-base md:text-lg bg-white flex justify-center items-center gap-2 sm:gap-3 px-4 py-2"
-          >
-            <img src="/apple.svg" alt="Apple logo" className="w-5 h-5 sm:w-6 sm:h-6" />
-            <span>Continue with Apple</span>
           </button>
         </div>
 
