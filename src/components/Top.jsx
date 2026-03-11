@@ -37,12 +37,12 @@ const Top = () => {
       {/* Image Grid */}
       <div className="flex flex-col gap-3 mt-9">
         <div className="flex flex-row gap-3">
-          <img src="/images/drink.jpeg"   alt="drink"   className="h-32 w-32 sm:h-40 sm:w-40 rounded-tl-[120px] object-cover" />
-          <img src="/images/sharwama.jpeg" alt="shawarma" className="h-32 w-32 sm:h-40 sm:w-40 rounded-tr-[120px] object-cover" />
+          <img src="/images/drink.jpeg"   alt="drink"   className="h-32 w-32 sm:h-40 sm:w-40 rounded-tl-[120px] rounded-[15px] object-cover" />
+          <img src="/images/sharwama.jpeg" alt="shawarma" className="h-32 w-32 sm:h-40 sm:w-40 rounded-tr-[120px] rounded-[15px] object-cover" />
         </div>
         <div className="flex flex-row gap-3">
-          <img src="/images/spag.jpeg"  alt="spaghetti"  className="h-32 w-32 sm:h-40 sm:w-40 rounded-bl-[120px] object-cover" />
-          <img src="/images/wrice.jpeg" alt="white rice"  className="h-32 w-32 sm:h-40 sm:w-40 rounded-br-[120px] object-cover" />
+          <img src="/images/spag.jpeg"  alt="spaghetti"  className="h-32 w-32 sm:h-40 sm:w-40 rounded-bl-[120px] rounded-[15px] object-cover" />
+          <img src="/images/wrice.jpeg" alt="white rice"  className="h-32 w-32 sm:h-40 sm:w-40 rounded-br-[120px] rounded-[15px] object-cover" />
         </div>
       </div>
 
