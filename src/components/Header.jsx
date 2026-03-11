@@ -11,7 +11,7 @@ const Header = () => {
 
 
                 <div className="flex items-center gap-2">
-                    <img src="/vite.svg" alt="logo" />
+                    <img src="/images/logo.png" alt="logo" className="size-12" />
                     <h1 className="text-2xl text-orange-400 font-bold">CampusBite</h1>
                 </div>
 
