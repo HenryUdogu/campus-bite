@@ -20,15 +20,12 @@ const Menu = () => {
     <div>
       <MenuTop />
 
-      <div className="bg-orange-100 p-4 md:p-8 mx-4 md:mx-10 rounded-xl">
+      <div className="bg-orange-100 p-4 md:p-8 mx-4 my-2 md:mx-10 rounded-xl">
+        <h2 className="text-2xl md:text-4xl font-bold mt-10 mb-6">Menu</h2>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
           {restaurants.map((item) => (
-            <MenuCard
-              key={item.id}
-              image={item.image}
-              name={item.name}
-            />
+            <MenuCard key={item.id} image={item.image} name={item.name} />
           ))}
         </div>
 
@@ -38,14 +35,9 @@ const Menu = () => {
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
           {restaurants.map((item) => (
-            <MenuCard
-              key={item.id}
-              image={item.image}
-              name={item.name}
-            />
+            <MenuCard key={item.id} image={item.image} name={item.name} />
           ))}
         </div>
-
       </div>
     </div>
   );
