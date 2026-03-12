@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const CartTop = () => {
   return (
     <nav className="flex flex-col md:flex-row gap-4 md:gap-0 px-4 md:px-6 py-4 bg-orange-100 items-center justify-between">
-      <Link to="/">
+      <Link to="/cart">
         <div className="flex items-center gap-2">
           <img src="/images/logo.png" alt="logo" className="size-12" />
           <h1 className="text-xl md:text-2xl text-orange-400 font-bold">

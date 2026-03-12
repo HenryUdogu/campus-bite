@@ -18,7 +18,7 @@ const restaurants = [
 const Menu = () => {
   return (
     <div>
-      <MenuTop />
+      <MenuTop className="sticky top-0" />
 
       <div className="bg-orange-100 p-4 md:p-8 mx-4 my-2 md:mx-10 rounded-xl">
         <h2 className="text-2xl md:text-4xl font-bold mt-10 mb-6">Menu</h2>

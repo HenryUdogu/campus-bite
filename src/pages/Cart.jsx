@@ -58,7 +58,7 @@ const Cart = () => {
 
   return (
     <div>
-      <CartTop />
+      <CartTop className="sticky top-0" />
 
       <div className="bg-orange-100 p-4 md:p-6 mx-4 md:mx-10 my-6 rounded-xl">
         {cartItems.map((item) => (
