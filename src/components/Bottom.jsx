@@ -11,19 +11,19 @@ const Bottom = () => {
           image="/images/pic.jpeg"
           title="Study Hard. Eat Smart. To pass well."
           desc="PRE-Order, or get it Delivered to your Doorstep"
-          path="/signup"
+          path="/signin"
         />
         <Card
           image="/images/merchant.jpeg"
           title="Become a Merchant"
           desc="Boost your sales and reach new customers. Start with 0% commission for your first 60 days"
-          path="/vendor-signup"
+          path="/vendor-signin"
         />
         <Card
           image="/images/bike.jpeg"
           title="Start Earning More as a Rider"
           desc="Turn your free time into money. Drive when and earn more!"
-          path="/rider-signup"
+          path="/rider-signin"
         />
       </div>
     </div>
