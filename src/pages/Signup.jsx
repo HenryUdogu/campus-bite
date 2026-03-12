@@ -84,7 +84,7 @@ const Signup = () => {
         onSubmit={handleSubmit}
       >
         <div className="flex justify-center items-center mb-5">
-          <h1 className="text-2xl md:text-3xl font-bold">Customer Form</h1>
+          <h1 className="text-2xl md:text-3xl font-bold">Student Form</h1>
         </div>
 
         {error && (
