@@ -1,7 +1,6 @@
 const CartItem = ({ item, increaseQty, decreaseQty, removeItem }) => {
   return (
     <div className="flex flex-col sm:flex-row justify-between sm:items-start gap-4 mb-6">
-
       <div className="flex gap-4">
         <img
           src={item.image}
@@ -10,9 +9,7 @@ const CartItem = ({ item, increaseQty, decreaseQty, removeItem }) => {
         />
 
         <div>
-          <h3 className="font-semibold text-sm md:text-base">
-            {item.name}
-          </h3>
+          <h3 className="font-semibold text-sm md:text-base">{item.name}</h3>
 
           <div className="flex items-center gap-3 mt-3">
             <button
@@ -22,9 +19,7 @@ const CartItem = ({ item, increaseQty, decreaseQty, removeItem }) => {
               -
             </button>
 
-            <div className="bg-gray-200 px-4 py-1 rounded">
-              {item.quantity}
-            </div>
+            <div className="bg-gray-200 px-4 py-1 rounded">{item.quantity}</div>
 
             <button
               onClick={() => increaseQty(item.id)}
@@ -43,12 +38,11 @@ const CartItem = ({ item, increaseQty, decreaseQty, removeItem }) => {
 
         <button
           onClick={() => removeItem(item.id)}
-          className="text-sm sm:mt-6"
+          className="text-sm bg-red-500 text-white font-semibold px-3 py-1 rounded sm:mt-6"
         >
           Remove
         </button>
       </div>
-
     </div>
   );
 };
