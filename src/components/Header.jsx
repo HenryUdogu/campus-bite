@@ -40,7 +40,7 @@ const Header = () => {
 
                     <button
                         className="flex bg-orange-400 rounded-2xl h-10 items-center px-4 gap-3 text-white whitespace-nowrap"
-                        onClick={() => navigate("/signup")}
+                        onClick={() => navigate("/signin")}
                     >
                         Order Now <ArrowRight size={18} />
                     </button>
