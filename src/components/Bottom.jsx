@@ -15,7 +15,7 @@ const Bottom = () => {
         />
         <Card
           image="/images/merchant.jpeg"
-          title="Become a Merchant"
+          title="Become a Vendor"
           desc="Boost your sales and reach new customers. Start with 0% commission for your first 60 days"
           path="/vendor-signup"
         />
