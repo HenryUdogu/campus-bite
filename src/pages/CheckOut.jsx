@@ -1,4 +1,4 @@
-import MenuTop from "../components/MenuTop"
+import CartTop from "../components/CartTop";
 import { Landmark, CreditCard,Hotel } from "lucide-react"
 const CheckOut = () => {
   return (
