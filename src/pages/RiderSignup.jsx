@@ -32,6 +32,11 @@ const RiderSignup = () => {
     const { data, error: signupError } = await supabase.auth.signUp({
       email,
       password,
+      options: {
+        data: {
+          display_name: `${firstName} ${lastName}`,
+        },
+      },
     });
 
     if (signupError) {
@@ -89,7 +94,7 @@ const RiderSignup = () => {
           </p>
         )}
 
-        
+
         <div className="flex flex-col md:flex-row gap-4">
           <div className="flex flex-col w-full my-2">
             <label className="font-semibold text-lg md:text-[20px]">
@@ -119,7 +124,7 @@ const RiderSignup = () => {
           </div>
         </div>
 
-        
+
         <div className="flex flex-col w-full my-2">
           <label className="font-semibold text-lg md:text-[20px]">Email</label>
           <input
@@ -132,7 +137,7 @@ const RiderSignup = () => {
           />
         </div>
 
-        
+
         <div className="flex flex-col w-full my-2">
           <label className="font-semibold text-lg md:text-[20px]">
             Mobile Number
@@ -147,7 +152,7 @@ const RiderSignup = () => {
           />
         </div>
 
-        
+
         <div className="flex flex-col w-full my-2">
           <label className="font-semibold text-lg md:text-[20px]">
             Vehicle Type
@@ -164,7 +169,7 @@ const RiderSignup = () => {
           </select>
         </div>
 
-        
+
         <div className="flex flex-col md:flex-row gap-4">
           <div className="flex flex-col w-full my-2">
             <label className="font-semibold text-lg md:text-[20px]">
@@ -194,7 +199,7 @@ const RiderSignup = () => {
           </div>
         </div>
 
-        
+
         <div className="flex flex-col w-full my-2">
           <label className="font-semibold text-lg md:text-[20px]">
             Plate Number
@@ -209,7 +214,7 @@ const RiderSignup = () => {
           />
         </div>
 
-        
+
         <div className="flex flex-col w-full my-2">
           <label className="font-semibold text-lg md:text-[20px]">
             Password

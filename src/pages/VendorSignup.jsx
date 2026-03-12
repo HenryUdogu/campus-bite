@@ -30,6 +30,11 @@ const VendorSignup = () => {
     const { data, error: signupError } = await supabase.auth.signUp({
       email,
       password,
+      options: {
+        data: {
+          display_name: `${firstName} ${lastName}`,
+        },
+      },
     });
 
     if (signupError) {

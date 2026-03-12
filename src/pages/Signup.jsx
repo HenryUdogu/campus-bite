@@ -7,6 +7,8 @@ const Signup = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [matricNo, setMatricNo] = useState("");
+  const [department, setDepartment] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState(null);
@@ -25,14 +27,13 @@ const Signup = () => {
 
     setLoading(true);
 
+    
     const { data, error: signupError } = await supabase.auth.signUp({
       email,
       password,
       options: {
         data: {
-          first_name: firstName,
-          last_name: lastName,
-          phone,
+          display_name: `${firstName} ${lastName}`,
         },
       },
     });
@@ -43,17 +44,31 @@ const Signup = () => {
       return;
     }
 
-   
+    
     const { error: insertError } = await supabase.from("users").insert({
       id: data.user.id,
       first_name: firstName,
       last_name: lastName,
       email,
       phone,
+      role: "student",
     });
 
     if (insertError) {
       setError(insertError.message);
+      setLoading(false);
+      return;
+    }
+
+    
+    const { error: studentError } = await supabase.from("students").insert({
+      user_id: data.user.id,
+      matric_no: matricNo,
+      department: department,
+    });
+
+    if (studentError) {
+      setError(studentError.message);
       setLoading(false);
       return;
     }
@@ -123,6 +138,30 @@ const Signup = () => {
             onChange={(e) => setPhone(e.target.value)}
             className="h-12 border border-orange-300 rounded-2xl px-4 bg-white"
             placeholder="Enter your Phone Number"
+            required
+          />
+        </div>
+
+        <div className="flex flex-col w-full my-2">
+          <label className="font-semibold text-lg md:text-[20px]">Matric Number</label>
+          <input
+            type="text"
+            value={matricNo}
+            onChange={(e) => setMatricNo(e.target.value)}
+            className="h-12 border border-orange-300 rounded-2xl px-4 bg-white"
+            placeholder="Enter your Matric Number"
+            required
+          />
+        </div>
+
+        <div className="flex flex-col w-full my-2">
+          <label className="font-semibold text-lg md:text-[20px]">Department</label>
+          <input
+            type="text"
+            value={department}
+            onChange={(e) => setDepartment(e.target.value)}
+            className="h-12 border border-orange-300 rounded-2xl px-4 bg-white"
+            placeholder="Enter your Department"
             required
           />
         </div>
