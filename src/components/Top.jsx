@@ -21,7 +21,7 @@ const Top = () => {
         <div className="flex flex-col sm:flex-row gap-4">
           <button
             className="flex bg-orange-400 rounded-2xl h-10 items-center px-4 gap-3 text-white whitespace-nowrap"
-            onClick={() => navigate("/vendor-signup")}
+            onClick={() => navigate("/rider-signup")}
           >
             Deliver with Us <ArrowRight size={18} />
           </button>

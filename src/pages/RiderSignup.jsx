@@ -2,13 +2,15 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { supabase } from "../supabaseClient";
 
-const VendorSignup = () => {
+const RiderSignup = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [shopName, setShopName] = useState("");
-  const [cacId, setCacId] = useState("");
+  const [vehicleType, setVehicleType] = useState("bike");
+  const [ninNo, setNinNo] = useState("");
+  const [licenseNo, setLicenseNo] = useState("");
+  const [plateNumber, setPlateNumber] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState(null);
@@ -44,7 +46,7 @@ const VendorSignup = () => {
       last_name: lastName,
       email,
       phone,
-      role: "vendor",
+      role: "rider",
     });
 
     if (userError) {
@@ -53,14 +55,16 @@ const VendorSignup = () => {
       return;
     }
 
-    const { error: vendorError } = await supabase.from("vendors").insert({
+    const { error: riderError } = await supabase.from("riders").insert({
       user_id: data.user.id,
-      shop_name: shopName,
-      cac_id: cacId,
+      vehicle_type: vehicleType,
+      nin_no: ninNo,
+      license_no: licenseNo,
+      plate_number: plateNumber,
     });
 
-    if (vendorError) {
-      setError(vendorError.message);
+    if (riderError) {
+      setError(riderError.message);
       setLoading(false);
       return;
     }
@@ -76,7 +80,7 @@ const VendorSignup = () => {
         onSubmit={handleSubmit}
       >
         <div className="flex justify-center items-center mb-5">
-          <h1 className="text-2xl md:text-3xl font-bold">Vendor Form</h1>
+          <h1 className="text-2xl md:text-3xl font-bold">Rider Sign Up</h1>
         </div>
 
         {error && (
@@ -85,43 +89,37 @@ const VendorSignup = () => {
           </p>
         )}
 
+        
         <div className="flex flex-col md:flex-row gap-4">
           <div className="flex flex-col w-full my-2">
-            <label className="font-semibold text-lg md:text-[20px]">First Name</label>
+            <label className="font-semibold text-lg md:text-[20px]">
+              First Name
+            </label>
             <input
               type="text"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
               className="h-12 border border-orange-300 rounded-2xl px-4 bg-white"
-              placeholder="Enter your First name"
+              placeholder="Enter your First Name"
               required
             />
           </div>
           <div className="flex flex-col w-full my-2">
-            <label className="font-semibold text-lg md:text-[20px]">Last Name</label>
+            <label className="font-semibold text-lg md:text-[20px]">
+              Last Name
+            </label>
             <input
               type="text"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
               className="h-12 border border-orange-300 rounded-2xl px-4 bg-white"
-              placeholder="Enter your Last name"
+              placeholder="Enter your Last Name"
               required
             />
           </div>
         </div>
 
-        <div className="flex flex-col w-full my-2">
-          <label className="font-semibold text-lg md:text-[20px]">Shop Name</label>
-          <input
-            type="text"
-            value={shopName}
-            onChange={(e) => setShopName(e.target.value)}
-            className="h-12 border border-orange-300 rounded-2xl px-4 bg-white"
-            placeholder="Enter your Shop Name"
-            required
-          />
-        </div>
-
+        
         <div className="flex flex-col w-full my-2">
           <label className="font-semibold text-lg md:text-[20px]">Email</label>
           <input
@@ -134,8 +132,11 @@ const VendorSignup = () => {
           />
         </div>
 
+        
         <div className="flex flex-col w-full my-2">
-          <label className="font-semibold text-lg md:text-[20px]">Mobile Number</label>
+          <label className="font-semibold text-lg md:text-[20px]">
+            Mobile Number
+          </label>
           <input
             type="number"
             value={phone}
@@ -146,20 +147,73 @@ const VendorSignup = () => {
           />
         </div>
 
+        
         <div className="flex flex-col w-full my-2">
-          <label className="font-semibold text-lg md:text-[20px]">CAC ID</label>
+          <label className="font-semibold text-lg md:text-[20px]">
+            Vehicle Type
+          </label>
+          <select
+            value={vehicleType}
+            onChange={(e) => setVehicleType(e.target.value)}
+            className="h-12 border border-orange-300 rounded-2xl px-4 bg-white"
+            required
+          >
+            <option value="bike">Bike</option>
+            <option value="motorbike">Motorbike</option>
+            <option value="car">Car</option>
+          </select>
+        </div>
+
+        
+        <div className="flex flex-col md:flex-row gap-4">
+          <div className="flex flex-col w-full my-2">
+            <label className="font-semibold text-lg md:text-[20px]">
+              NIN Number
+            </label>
+            <input
+              type="text"
+              value={ninNo}
+              onChange={(e) => setNinNo(e.target.value)}
+              className="h-12 border border-orange-300 rounded-2xl px-4 bg-white"
+              placeholder="Enter your NIN"
+              required
+            />
+          </div>
+          <div className="flex flex-col w-full my-2">
+            <label className="font-semibold text-lg md:text-[20px]">
+              License Number
+            </label>
+            <input
+              type="text"
+              value={licenseNo}
+              onChange={(e) => setLicenseNo(e.target.value)}
+              className="h-12 border border-orange-300 rounded-2xl px-4 bg-white"
+              placeholder="Enter your License No"
+              required
+            />
+          </div>
+        </div>
+
+        
+        <div className="flex flex-col w-full my-2">
+          <label className="font-semibold text-lg md:text-[20px]">
+            Plate Number
+          </label>
           <input
             type="text"
-            value={cacId}
-            onChange={(e) => setCacId(e.target.value)}
+            value={plateNumber}
+            onChange={(e) => setPlateNumber(e.target.value)}
             className="h-12 border border-orange-300 rounded-2xl px-4 bg-white"
-            placeholder="Enter your CAC ID"
+            placeholder="Enter your Plate Number"
             required
           />
         </div>
 
+        
         <div className="flex flex-col w-full my-2">
-          <label className="font-semibold text-lg md:text-[20px]">Password</label>
+          <label className="font-semibold text-lg md:text-[20px]">
+            Password
+          </label>
           <input
             type="password"
             value={password}
@@ -171,7 +225,9 @@ const VendorSignup = () => {
         </div>
 
         <div className="flex flex-col w-full my-2">
-          <label className="font-semibold text-lg md:text-[20px]">Confirm Password</label>
+          <label className="font-semibold text-lg md:text-[20px]">
+            Confirm Password
+          </label>
           <input
             type="password"
             value={confirmPassword}
@@ -185,7 +241,10 @@ const VendorSignup = () => {
         <div className="w-full my-3 font-semibold text-sm md:text-base">
           <p>
             By tapping "Sign Up" you agree to CampusBite{" "}
-            <a href="#" className="text-orange-600">Terms and Condition</a>.
+            <a href="#" className="text-orange-600">
+              Terms and Condition
+            </a>
+            .
           </p>
         </div>
 
@@ -202,7 +261,9 @@ const VendorSignup = () => {
         <div className="w-full my-2 text-right font-semibold text-sm md:text-base">
           <p>
             Already have an account?{" "}
-            <Link to="/signin" className="text-orange-500 font-semibold">Login Here</Link>
+            <Link to="/signin" className="text-orange-500 font-semibold">
+              Login Here
+            </Link>
           </p>
         </div>
       </form>
@@ -210,4 +271,4 @@ const VendorSignup = () => {
   );
 };
 
-export default VendorSignup;
+export default RiderSignup;
