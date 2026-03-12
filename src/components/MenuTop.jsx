@@ -11,7 +11,7 @@ const MenuTop = () => {
   }
 
   return (
-    <nav className="flex flex-col md:flex-row gap-4 md:gap-0 px-4 md:px-6 py-4 bg-orange-100 items-center justify-between">
+    <nav className="flex flex-col md:flex-row gap-4 md:gap-0 px-4 md:px-6 py-4 bg-orange-100 items-center justify-between sticky top-0">
       <Link to="/menu">
         <div className="flex items-center gap-2">
           <img src="/images/logo.png" alt="logo" className="size-12" />
