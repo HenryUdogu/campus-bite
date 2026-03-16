@@ -8,6 +8,11 @@ import CheckOut from "./pages/CheckOut";
 import VendorSignup from "./pages/VendorSignup";
 import RiderSignup from "./pages/RiderSignup";
 import VendorDashboard from "./pages/VendorDashboard";
+import DashboardHome from  "./components/vendor/DashboardHome";
+import VendorMenu from "./components/vendor/VendorMenu";
+import VendorOrders from "./components/vendor/VendorOrders";
+import VendorHistory from "./components/vendor/VendorHistory";
+import VendorProfile from "./components/vendor/VendorProfile";
 const App = () => {
   return (
     <Router>
@@ -20,7 +25,13 @@ const App = () => {
         <Route path="/menu" element={<Menu />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<CheckOut />} />
-        <Route path="/vendor-dashboard" element={<VendorDashboard/>}/>
+        <Route path="/vendor-dashboard" element={<VendorDashboard />}>
+          <Route index element={<DashboardHome />} />
+          <Route path="menu" element={<VendorMenu />} />
+          <Route path="orders" element={<VendorOrders />} />
+          <Route path="history" element={<VendorHistory />} />
+          <Route path="profile" element={<VendorProfile />} />
+        </Route>
       </Routes>
     </Router>
   );

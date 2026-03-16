@@ -2,7 +2,7 @@ import { supabase } from "../../supabaseClient";
 import { useNavigate, NavLink } from "react-router-dom";
 import { LayoutDashboard, UtensilsCrossed, PackageOpen, User, History, LogOut } from "lucide-react";
 
-const VendorSideBar = () => {
+const VendorSideBar = ({ setSidebarOpen }) => {
   const navigate = useNavigate();
 
   async function handleLogout() {
@@ -13,22 +13,22 @@ const VendorSideBar = () => {
   return (
     <aside className="flex flex-col h-screen w-64 bg-white shadow-lg">
 
-      
       <div className="flex items-center gap-2 px-6 py-5 border-b">
         <img src="/images/logo.png" alt="logo" className="w-8 h-8" />
         <h1 className="text-xl font-bold text-orange-400">CampusBite</h1>
       </div>
 
-      
       <nav className="flex-1 m-5">
         <ul className="flex flex-col gap-2">
+
           <li>
             <NavLink
               to="/vendor-dashboard"
               end
+              onClick={() => setSidebarOpen && setSidebarOpen(false)}
               className={({ isActive }) =>
                 `flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition
-                ${isActive ? "bg-orange-400 text-white" : "text-gray-600 hover:bg-red-50"}`
+                ${isActive ? "bg-orange-400 text-white" : "text-gray-600 hover:bg-orange-50"}`
               }
             >
               <LayoutDashboard size={20} /> Dashboard
@@ -38,9 +38,10 @@ const VendorSideBar = () => {
           <li>
             <NavLink
               to="/vendor-dashboard/profile"
+              onClick={() => setSidebarOpen && setSidebarOpen(false)}
               className={({ isActive }) =>
                 `flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition
-                ${isActive ? "bg-orange-400 text-white" : "text-gray-600 hover:bg-red-50"}`
+                ${isActive ? "bg-orange-400 text-white" : "text-gray-600 hover:bg-orange-50"}`
               }
             >
               <User size={20} /> Profile
@@ -50,9 +51,10 @@ const VendorSideBar = () => {
           <li>
             <NavLink
               to="/vendor-dashboard/orders"
+              onClick={() => setSidebarOpen && setSidebarOpen(false)}
               className={({ isActive }) =>
                 `flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition
-                ${isActive ? "bg-orange-400 text-white" : "text-gray-600 hover:bg-red-50"}`
+                ${isActive ? "bg-orange-400 text-white" : "text-gray-600 hover:bg-orange-50"}`
               }
             >
               <PackageOpen size={20} /> Order
@@ -62,9 +64,10 @@ const VendorSideBar = () => {
           <li>
             <NavLink
               to="/vendor-dashboard/menu"
+              onClick={() => setSidebarOpen && setSidebarOpen(false)}
               className={({ isActive }) =>
                 `flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition
-                ${isActive ? "bg-orange-400 text-white" : "text-gray-600 hover:bg-red-50"}`
+                ${isActive ? "bg-orange-400 text-white" : "text-gray-600 hover:bg-orange-50"}`
               }
             >
               <UtensilsCrossed size={20} /> Menu
@@ -74,18 +77,19 @@ const VendorSideBar = () => {
           <li>
             <NavLink
               to="/vendor-dashboard/history"
+              onClick={() => setSidebarOpen && setSidebarOpen(false)}
               className={({ isActive }) =>
                 `flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition
-                ${isActive ? "bg-orange-400 text-white" : "text-gray-600 hover:bg-red-50"}`
+                ${isActive ? "bg-orange-400 text-white" : "text-gray-600 hover:bg-orange-50"}`
               }
             >
               <History size={20} /> History
             </NavLink>
           </li>
+
         </ul>
       </nav>
 
-      
       <div className="p-5">
         <button
           onClick={handleLogout}
