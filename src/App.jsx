@@ -7,7 +7,7 @@ import Cart from "./pages/Cart";
 import CheckOut from "./pages/CheckOut";
 import VendorSignup from "./pages/VendorSignup";
 import RiderSignup from "./pages/RiderSignup";
-
+import VendorDashboard from "./pages/VendorDashboard";
 const App = () => {
   return (
     <Router>
@@ -20,6 +20,7 @@ const App = () => {
         <Route path="/menu" element={<Menu />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<CheckOut />} />
+        <Route path="/vendor-dashboard" element={<VendorDashboard/>}/>
       </Routes>
     </Router>
   );
