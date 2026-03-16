@@ -35,18 +35,7 @@ const VendorSideBar = ({ setSidebarOpen }) => {
             </NavLink>
           </li>
 
-          <li>
-            <NavLink
-              to="/vendor-dashboard/profile"
-              onClick={() => setSidebarOpen && setSidebarOpen(false)}
-              className={({ isActive }) =>
-                `flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition
-                ${isActive ? "bg-orange-400 text-white" : "text-gray-600 hover:bg-orange-50"}`
-              }
-            >
-              <User size={20} /> Profile
-            </NavLink>
-          </li>
+         
 
           <li>
             <NavLink
@@ -89,6 +78,18 @@ const VendorSideBar = ({ setSidebarOpen }) => {
 
         </ul>
       </nav>
+       
+            <NavLink
+              to="/vendor-dashboard/profile"
+              onClick={() => setSidebarOpen && setSidebarOpen(false)}
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition ml-3
+                ${isActive ? "bg-orange-400 text-white" : "text-gray-600 hover:bg-orange-50"}`
+              }
+            >
+              <User size={20} /> Profile
+            </NavLink>
+          
 
       <div className="p-5">
         <button

@@ -63,8 +63,8 @@ const VendorDashboard = () => {
           >
             {sidebarOpen ? <X size={26} /> : <Menu size={26} />}
           </button>
-          <h2 className="text-lg font-semibold text-gray-700">Vendor Dashboard</h2>
-          <p className="text-sm text-gray-500 hidden md:block font-semibold">Welcome,  {vendorName}</p>
+          <h2 className="text-lg font-semibold md:block hidden text-gray-700">Vendor Dashboard</h2>
+          <p className="text-sm text-gray-500 font-semibold">Welcome,  {vendorName}</p>
         </header>
 
         <main className="p-6 flex-1">
