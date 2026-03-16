@@ -34,9 +34,6 @@ const VendorSideBar = ({ setSidebarOpen }) => {
               <LayoutDashboard size={20} /> Dashboard
             </NavLink>
           </li>
-
-         
-
           <li>
             <NavLink
               to="/vendor-dashboard/orders"
@@ -75,21 +72,22 @@ const VendorSideBar = ({ setSidebarOpen }) => {
               <History size={20} /> History
             </NavLink>
           </li>
-
-        </ul>
-      </nav>
-       
+           <li>
             <NavLink
               to="/vendor-dashboard/profile"
               onClick={() => setSidebarOpen && setSidebarOpen(false)}
               className={({ isActive }) =>
-                `flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition ml-3
+                `flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition
                 ${isActive ? "bg-orange-400 text-white" : "text-gray-600 hover:bg-orange-50"}`
               }
             >
               <User size={20} /> Profile
             </NavLink>
-          
+          </li>
+
+
+        </ul>
+      </nav>
 
       <div className="p-5">
         <button
