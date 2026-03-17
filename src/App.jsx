@@ -13,6 +13,7 @@ import VendorMenu from "./components/vendor/VendorMenu";
 import VendorOrders from "./components/vendor/VendorOrders";
 import VendorHistory from "./components/vendor/VendorHistory";
 import VendorProfile from "./components/vendor/VendorProfile";
+import VendorRestaurant from "./components/vendor/VendorRestaurant"
 const App = () => {
   return (
     <Router>
@@ -31,6 +32,7 @@ const App = () => {
           <Route path="orders" element={<VendorOrders />} />
           <Route path="history" element={<VendorHistory />} />
           <Route path="profile" element={<VendorProfile />} />
+          <Route path="restaurant" element={<VendorRestaurant />} />
         </Route>
       </Routes>
     </Router>

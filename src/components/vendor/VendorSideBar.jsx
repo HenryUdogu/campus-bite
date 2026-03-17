@@ -1,6 +1,6 @@
 import { supabase } from "../../supabaseClient";
 import { useNavigate, NavLink } from "react-router-dom";
-import { LayoutDashboard, UtensilsCrossed, PackageOpen, User, History, LogOut } from "lucide-react";
+import { LayoutDashboard, UtensilsCrossed, PackageOpen, User, History, LogOut, Store } from "lucide-react";
 
 const VendorSideBar = ({ setSidebarOpen }) => {
   const navigate = useNavigate();
@@ -34,6 +34,22 @@ const VendorSideBar = ({ setSidebarOpen }) => {
               <LayoutDashboard size={20} /> Dashboard
             </NavLink>
           </li>
+
+          <li>
+            <NavLink
+              to="/vendor-dashboard/restaurant"
+              onClick={() => setSidebarOpen && setSidebarOpen(false)}
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition
+                ${isActive ? "bg-orange-400 text-white" : "text-gray-600 hover:bg-orange-50"}`
+              }
+            >
+              <Store size={20} /> Restaurant
+            </NavLink>
+          </li>
+
+         
+
           <li>
             <NavLink
               to="/vendor-dashboard/orders"
@@ -84,7 +100,6 @@ const VendorSideBar = ({ setSidebarOpen }) => {
               <User size={20} /> Profile
             </NavLink>
           </li>
-
 
         </ul>
       </nav>
