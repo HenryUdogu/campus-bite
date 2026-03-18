@@ -12,15 +12,13 @@ const VendorSideBar = ({ setSidebarOpen }) => {
 
   return (
     <aside className="flex flex-col h-screen w-64 bg-white shadow-lg">
-
-      <div className="flex items-center gap-2 px-6 py-5 border-b">
+      <div className="flex items-center gap-2 px-6 py-5 border-b shadow-sm">
         <img src="/images/logo.png" alt="logo" className="w-8 h-8" />
         <h1 className="text-xl font-bold text-orange-400">CampusBite</h1>
       </div>
 
       <nav className="flex-1 m-5">
         <ul className="flex flex-col gap-2">
-
           <li>
             <NavLink
               to="/vendor-dashboard"
@@ -47,8 +45,6 @@ const VendorSideBar = ({ setSidebarOpen }) => {
               <Store size={20} /> Restaurant
             </NavLink>
           </li>
-
-         
 
           <li>
             <NavLink
@@ -88,7 +84,7 @@ const VendorSideBar = ({ setSidebarOpen }) => {
               <History size={20} /> History
             </NavLink>
           </li>
-           <li>
+          <li>
             <NavLink
               to="/vendor-dashboard/profile"
               onClick={() => setSidebarOpen && setSidebarOpen(false)}
@@ -100,7 +96,6 @@ const VendorSideBar = ({ setSidebarOpen }) => {
               <User size={20} /> Profile
             </NavLink>
           </li>
-
         </ul>
       </nav>
 
@@ -113,7 +108,6 @@ const VendorSideBar = ({ setSidebarOpen }) => {
           Logout
         </button>
       </div>
-
     </aside>
   );
 };

@@ -117,7 +117,7 @@ const VendorRestaurant = () => {
   if (loading) return <p className="text-gray-500">Loading...</p>;
 
   return (
-    <div className="max-w-screen">
+    <div className="max-w-screen p-6">
       <h2 className="text-2xl font-bold mb-6">Restaurant Setup</h2>
 
       {error && (

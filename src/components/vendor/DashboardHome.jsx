@@ -48,16 +48,18 @@ const DashboardHome = () => {
   if (loading) return <p className="text-gray-500">Loading...</p>;
 
   return (
-    <div>
+    <div className="p-6">
       <h2 className="text-2xl font-bold mb-2">Welcome back, {vendorName} </h2>
-      <p className="text-gray-500 mb-8">Here's what's happening with your store today.</p>
+      <p className="text-gray-500 mb-8">
+        Here's what's happening with your store today.
+      </p>
 
-      
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-
         <div className="bg-white rounded-2xl p-6 shadow-sm">
           <p className="text-gray-500 text-sm">Total Menu Items</p>
-          <h3 className="text-3xl font-bold text-orange-400 mt-2">{totalMenuItems}</h3>
+          <h3 className="text-3xl font-bold text-orange-400 mt-2">
+            {totalMenuItems}
+          </h3>
         </div>
 
         <div className="bg-white rounded-2xl p-6 shadow-sm">
@@ -74,7 +76,6 @@ const DashboardHome = () => {
           <p className="text-gray-500 text-sm">Total Revenue</p>
           <h3 className="text-3xl font-bold text-orange-400 mt-2">₦0</h3>
         </div>
-
       </div>
     </div>
   );

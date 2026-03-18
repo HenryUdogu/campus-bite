@@ -184,7 +184,7 @@ const VendorMenu = () => {
   if (loading) return <p className="text-gray-500">Loading...</p>;
 
   return (
-    <div>
+    <div className="p-6">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl font-bold">My Menu</h2>
         {!showForm && (
@@ -197,8 +197,12 @@ const VendorMenu = () => {
         )}
       </div>
 
-      {error && <p className="text-red-500 text-sm font-semibold mb-4">{error}</p>}
-      {success && <p className="text-green-500 text-sm font-semibold mb-4">{success}</p>}
+      {error && (
+        <p className="text-red-500 text-sm font-semibold mb-4">{error}</p>
+      )}
+      {success && (
+        <p className="text-green-500 text-sm font-semibold mb-4">{success}</p>
+      )}
 
       {showForm && (
         <form
@@ -281,12 +285,17 @@ const VendorMenu = () => {
 
       {menuItems.length === 0 ? (
         <div className="bg-white rounded-2xl p-10 shadow-sm text-center">
-          <p className="text-gray-500">No menu items yet. Click "Add Item" to get started!</p>
+          <p className="text-gray-500">
+            No menu items yet. Click "Add Item" to get started!
+          </p>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {menuItems.map((item) => (
-            <div key={item.id} className="bg-white rounded-2xl shadow-sm overflow-hidden">
+            <div
+              key={item.id}
+              className="bg-white rounded-2xl shadow-sm overflow-hidden"
+            >
               {item.image_url && (
                 <img
                   src={item.image_url}
@@ -298,7 +307,9 @@ const VendorMenu = () => {
                 <h3 className="text-lg font-bold">{item.name}</h3>
                 <p className="text-orange-400 font-semibold">₦{item.price}</p>
                 {item.description && (
-                  <p className="text-gray-500 text-sm mt-1">{item.description}</p>
+                  <p className="text-gray-500 text-sm mt-1">
+                    {item.description}
+                  </p>
                 )}
                 <div className="flex gap-3 mt-4">
                   <button
