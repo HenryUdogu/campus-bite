@@ -42,7 +42,7 @@ const VendorDashboard = () => {
   return (
     <div className="flex min-h-screen bg-gray-100">
       <div
-        className={`fixed top-0 left-0 h-full z-50 transform transition-transform duration-300
+        className={`md:sticky top-0 left-0 h-full z-50 transform transition-transform duration-300
         ${sidebarOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 md:static md:block`}
       >
         <VendorSideBar setSidebarOpen={setSidebarOpen} />
