@@ -114,18 +114,38 @@ const VendorRestaurant = () => {
     setSaving(false);
   }
 
-  if (loading) return <p className="text-gray-500">Loading...</p>;
+  if (loading) return (
+    <p className="text-gray-500">
+      Loading
+      {[0, 150, 300].map((d, i) => (
+        <div
+          key={i}
+          style={{
+            width: 5,
+            height: 5,
+            borderRadius: "50%",
+            background: "#3b82f6",
+            animation: `bounce 1.2s ${d}ms infinite`,
+          }}
+        />
+      ))}
+    </p>
+  );
 
   return (
     <div className="max-w-2xl">
       <h2 className="text-2xl font-bold mb-6">Restaurant Setup</h2>
 
-      {error && <p className="text-red-500 text-sm font-semibold mb-4">{error}</p>}
-      {success && <p className="text-green-500 text-sm font-semibold mb-4">{success}</p>}
+      {error && (
+        <p className="text-red-500 text-sm font-semibold mb-4">{error}</p>
+      )}
+      {success && (
+        <p className="text-green-500 text-sm font-semibold mb-4">{success}</p>
+      )}
 
       <form
         onSubmit={handleSubmit}
-        className="bg-white rounded-2xl p-6 shadow-sm flex flex-col gap-4"
+        className="bg-white rounded-2xl p-6 shadow-sm flex flex-col gap-4 w-svw"
       >
         <div className="flex flex-col gap-2">
           <label className="font-semibold">Restaurant Image</label>
@@ -171,7 +191,11 @@ const VendorRestaurant = () => {
           disabled={saving}
           className="min-h-[48px] bg-orange-400 hover:bg-orange-500 text-white rounded-xl font-bold text-lg"
         >
-          {saving ? "Saving..." : restaurant ? "Update Restaurant" : "Create Restaurant"}
+          {saving
+            ? "Saving..."
+            : restaurant
+              ? "Update Restaurant"
+              : "Create Restaurant"}
         </button>
       </form>
     </div>
