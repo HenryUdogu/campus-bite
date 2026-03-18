@@ -284,13 +284,13 @@ const VendorMenu = () => {
       )}
 
       {menuItems.length === 0 ? (
-        <div className="bg-white rounded-2xl p-10 shadow-sm text-center md:px-5">
+        <div className="bg-white rounded-2xl p-10 shadow-sm text-center md:mx-5">
           <p className="text-gray-500">
             No menu items yet. Click "Add Item" to get started!
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:px-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:mx-5">
           {menuItems.map((item) => (
             <div
               key={item.id}
