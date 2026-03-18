@@ -105,7 +105,7 @@ const VendorProfile = () => {
 
       <form
         onSubmit={handleSubmit}
-        className="bg-white rounded-2xl p-6 shadow-sm flex flex-col gap-4"
+        className="bg-white rounded-2xl p-6 shadow-sm flex flex-col gap-4 md:px-5"
       >
         <div className="flex flex-col md:flex-row gap-4">
           <div className="flex flex-col w-full gap-2">

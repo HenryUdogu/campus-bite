@@ -98,7 +98,7 @@ const VendorOrders = () => {
       )}
 
       {/* Tabs */}
-      <div className="flex gap-2 mb-6">
+      <div className="flex gap-2 mb-6 md:px-5">
         {["pending", "preparing", "ready"].map((tab) => (
           <button
             key={tab}
@@ -119,11 +119,11 @@ const VendorOrders = () => {
       </div>
 
       {filteredOrders.length === 0 ? (
-        <div className="bg-white rounded-2xl p-10 shadow-sm text-center">
+        <div className="bg-white rounded-2xl p-10 shadow-sm text-center md:px-5">
           <p className="text-gray-500">No {activeTab} orders.</p>
         </div>
       ) : (
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4  md:px-5">
           {filteredOrders.map((order) => (
             <div key={order.id} className="bg-white rounded-2xl p-6 shadow-sm">
               <div className="flex items-center justify-between mb-4">

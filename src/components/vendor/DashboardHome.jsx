@@ -54,7 +54,7 @@ const DashboardHome = () => {
         Here's what's happening with your store today.
       </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:px-5">
         <div className="bg-white rounded-2xl p-6 shadow-sm">
           <p className="text-gray-500 text-sm">Total Menu Items</p>
           <h3 className="text-3xl font-bold text-orange-400 mt-2">

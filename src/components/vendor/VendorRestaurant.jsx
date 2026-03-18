@@ -129,7 +129,7 @@ const VendorRestaurant = () => {
 
       <form
         onSubmit={handleSubmit}
-        className="bg-white rounded-2xl p-6 shadow-sm flex flex-col gap-4 w-svw"
+        className="bg-white rounded-2xl p-6 shadow-sm flex flex-col gap-4 max-w-[100%] md:px-5"
       >
         <div className="flex flex-col gap-2 max-w-[100%]">
           <label className="font-semibold">Restaurant Image</label>
