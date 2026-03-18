@@ -15,7 +15,9 @@ const VendorRestaurant = () => {
 
   useEffect(() => {
     const fetchRestaurant = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
       if (!session) return;
 
       const { data: vendor } = await supabase
@@ -94,14 +96,12 @@ const VendorRestaurant = () => {
       }
       setSuccess("Restaurant updated successfully!");
     } else {
-      const { error: insertError } = await supabase
-        .from("restaurants")
-        .insert({
-          vendor_id: vendorId,
-          name,
-          description,
-          image_url: imageUrl,
-        });
+      const { error: insertError } = await supabase.from("restaurants").insert({
+        vendor_id: vendorId,
+        name,
+        description,
+        image_url: imageUrl,
+      });
 
       if (insertError) {
         setError(insertError.message);
@@ -114,26 +114,10 @@ const VendorRestaurant = () => {
     setSaving(false);
   }
 
-  if (loading) return (
-    <p className="text-gray-500">
-      Loading
-      {[0, 150, 300].map((d, i) => (
-        <div
-          key={i}
-          style={{
-            width: 5,
-            height: 5,
-            borderRadius: "50%",
-            background: "#3b82f6",
-            animation: `bounce 1.2s ${d}ms infinite`,
-          }}
-        />
-      ))}
-    </p>
-  );
+  if (loading) return <p className="text-gray-500">Loading...</p>;
 
   return (
-    <div className="max-w-2xl">
+    <div className="max-w-screen">
       <h2 className="text-2xl font-bold mb-6">Restaurant Setup</h2>
 
       {error && (
