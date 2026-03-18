@@ -48,9 +48,9 @@ const DashboardHome = () => {
   if (loading) return <p className="text-gray-500">Loading...</p>;
 
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-bold mb-2">Welcome back, {vendorName} </h2>
-      <p className="text-gray-500 mb-8">
+    <div className="py-6">
+      <h2 className="text-2xl font-bold mb-2 px-5">Welcome, {vendorName} </h2>
+      <p className="text-gray-500 mb-8 px-5">
         Here's what's happening with your store today.
       </p>
 

@@ -184,8 +184,8 @@ const VendorMenu = () => {
   if (loading) return <p className="text-gray-500">Loading...</p>;
 
   return (
-    <div className="p-6">
-      <div className="flex items-center justify-between mb-6">
+    <div className="py-6">
+      <div className="flex items-center justify-between mb-6 px-5">
         <h2 className="text-2xl font-bold">My Menu</h2>
         {!showForm && (
           <button

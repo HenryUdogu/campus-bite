@@ -67,7 +67,7 @@ const VendorDashboard = () => {
           <p className="text-sm text-gray-500 font-semibold">Welcome,  {vendorName}</p>
         </header>
 
-        <main className="md:p-6 flex-1">
+        <main className="flex-1">
           <Outlet />
         </main>
       </div>

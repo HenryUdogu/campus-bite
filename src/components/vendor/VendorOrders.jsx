@@ -90,8 +90,8 @@ const VendorOrders = () => {
   if (loading) return <p className="text-gray-500">Loading...</p>;
 
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-bold mb-6">Orders</h2>
+    <div className="py-6">
+      <h2 className="text-2xl font-bold mb-6 px-5">Orders</h2>
 
       {error && (
         <p className="text-red-500 text-sm font-semibold mb-4">{error}</p>

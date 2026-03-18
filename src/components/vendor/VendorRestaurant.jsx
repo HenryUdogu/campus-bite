@@ -117,8 +117,8 @@ const VendorRestaurant = () => {
   if (loading) return <p className="text-gray-500">Loading...</p>;
 
   return (
-    <div className="max-w-screen p-6">
-      <h2 className="text-2xl font-bold mb-6">Restaurant Setup</h2>
+    <div className="max-w-screen py-6">
+      <h2 className="text-2xl font-bold mb-6 px-5">Restaurant Setup</h2>
 
       {error && (
         <p className="text-red-500 text-sm font-semibold mb-4">{error}</p>
@@ -131,13 +131,13 @@ const VendorRestaurant = () => {
         onSubmit={handleSubmit}
         className="bg-white rounded-2xl p-6 shadow-sm flex flex-col gap-4 w-svw"
       >
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 max-w-[100%]">
           <label className="font-semibold">Restaurant Image</label>
           {imagePreview && (
             <img
               src={imagePreview}
               alt="preview"
-              className="w-full h-48 object-cover rounded-xl mb-2"
+              className="w-[100%] h-48 object-cover rounded-xl mb-2"
             />
           )}
           <input

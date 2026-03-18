@@ -93,11 +93,15 @@ const VendorProfile = () => {
   if (loading) return <p className="text-gray-500">Loading...</p>;
 
   return (
-    <div className="max-w-2xl p-6">
-      <h2 className="text-2xl font-bold mb-6">Profile</h2>
+    <div className="max-w-2xl py-6">
+      <h2 className="text-2xl font-bold mb-6 px-5">Profile</h2>
 
-      {error && <p className="text-red-500 text-sm font-semibold mb-4">{error}</p>}
-      {success && <p className="text-green-500 text-sm font-semibold mb-4">{success}</p>}
+      {error && (
+        <p className="text-red-500 text-sm font-semibold mb-4">{error}</p>
+      )}
+      {success && (
+        <p className="text-green-500 text-sm font-semibold mb-4">{success}</p>
+      )}
 
       <form
         onSubmit={handleSubmit}
