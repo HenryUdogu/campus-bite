@@ -207,7 +207,7 @@ const VendorMenu = () => {
       {showForm && (
         <form
           onSubmit={handleSubmit}
-          className="bg-white rounded-2xl p-6 shadow-sm flex flex-col gap-4 mb-8"
+          className="bg-white rounded-2xl w-[100%] p-6 shadow-sm flex flex-col gap-4 mb-8"
         >
           <h3 className="text-xl font-bold">
             {editingItem ? "Edit Item" : "Add New Item"}
