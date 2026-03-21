@@ -11,44 +11,48 @@ const Signin = () => {
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
-    e.preventDefault();
-    setError(null);
-    setLoading(true);
+  e.preventDefault();
+  setError(null);
+  setLoading(true);
 
-    const { error: signinError } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+  const { error: signinError } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
 
-    if (signinError) {
-      setError(signinError.message);
-      setLoading(false);
-      return;
-    }
-
-    const { data: { user } } = await supabase.auth.getUser();
-
-    const { data: profile, error: profileError } = await supabase
-      .from("users")
-      .select("role")
-      .eq("id", user.id)
-      .single();
-
-    if (profileError) {
-      setError(profileError.message);
-      setLoading(false);
-      return;
-    }
-
+  if (signinError) {
+    setError(signinError.message);
     setLoading(false);
-    if (profile.role === "vendor") {
-      navigate("/vendor-dashboard", { replace: true });
-    } else if (profile.role === "rider") {
-      navigate("/rider-dashboard", { replace: true });
-    } else {
-      navigate("/menu", { replace: true });
-    }
+    return;
   }
+
+  const { data: { user } } = await supabase.auth.getUser();
+  console.log("user:", user); // ← add this
+
+  const { data: profile, error: profileError } = await supabase
+    .from("users")
+    .select("role")
+    .eq("id", user.id)
+    .single();
+
+  console.log("profile:", profile); // ← add this
+  console.log("profile error:", profileError); // ← add this
+
+  if (profileError) {
+    setError(profileError.message);
+    setLoading(false);
+    return;
+  }
+
+  setLoading(false);
+  if (profile.role === "vendor") {
+    navigate("/vendor-dashboard", { replace: true });
+  } else if (profile.role === "rider") {
+    navigate("/rider-dashboard", { replace: true });
+  } else {
+    navigate("/menu", { replace: true });
+  }
+}
 
   return (
     <div className="min-h-screen px-4 md:px-[10%] py-10 flex justify-center items-start">
