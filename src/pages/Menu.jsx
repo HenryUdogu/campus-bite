@@ -62,7 +62,7 @@ const Menu = () => {
       <div className="bg-orange-100 p-4 md:p-8 mx-4 my-2 md:mx-10 rounded-xl">
 
         <h2 className="text-2xl md:text-3xl font-bold mb-8">
-          Welcome, {studentName} 👋
+          Welcome, {studentName}
         </h2>
 
         <h3 className="text-xl md:text-2xl font-bold mb-4">Browse Restaurants</h3>
