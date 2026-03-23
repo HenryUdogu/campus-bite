@@ -1,6 +1,7 @@
-import { ShoppingCart, Search, LogOut } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../supabaseClient";
+import { ShoppingCart, Search, LogOut, ClipboardList } from "lucide-react";
+
 
 const MenuTop = ({ searchQuery, setSearchQuery }) => {
   const navigate = useNavigate();
@@ -35,6 +36,9 @@ const MenuTop = ({ searchQuery, setSearchQuery }) => {
 
         <Link to="/cart">
           <ShoppingCart size={32} />
+        </Link>
+        <Link to="/orders">
+          <ClipboardList size={28} />
         </Link>
 
         <button

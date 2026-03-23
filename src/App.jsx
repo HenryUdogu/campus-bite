@@ -15,6 +15,7 @@ import VendorHistory from "./components/vendor/VendorHistory";
 import VendorProfile from "./components/vendor/VendorProfile";
 import VendorRestaurant from "./components/vendor/VendorRestaurant";
 import RestaurantMenu from "./pages/RestaurantMenu";
+import Orders from "./pages/Orders";
 const App = () => {
   return (
     <Router>
@@ -36,6 +37,7 @@ const App = () => {
           <Route path="restaurant" element={<VendorRestaurant />} />
         </Route>
         <Route path="/menu/:id" element={<RestaurantMenu />} />
+        <Route path="/orders" element={<Orders />} />
       </Routes>
     </Router>
   );

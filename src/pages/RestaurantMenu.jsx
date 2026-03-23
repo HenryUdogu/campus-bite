@@ -2,14 +2,18 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { supabase } from "../supabaseClient";
 import MenuTop from "../components/MenuTop";
+import { useCart } from "../context/CartContext";
+import {ArrowLeft} from "lucide-react"
 
 const RestaurantMenu = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { addToCart, cartCount } = useCart();
   const [restaurant, setRestaurant] = useState(null);
   const [menuItems, setMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
+  const [addedItems, setAddedItems] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,6 +44,21 @@ const RestaurantMenu = () => {
     fetchData();
   }, [id, navigate]);
 
+  const handleAddToCart = (item) => {
+    addToCart({
+      id: item.id,
+      name: item.name,
+      price: item.price,
+      image_url: item.image_url,
+      restaurant_id: item.restaurant_id,
+      vendor_id: item.vendor_id,
+    });
+    setAddedItems((prev) => ({ ...prev, [item.id]: true }));
+    setTimeout(() => {
+      setAddedItems((prev) => ({ ...prev, [item.id]: false }));
+    }, 1500);
+  };
+
   const filteredItems = menuItems.filter((item) =>
     item.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -57,7 +76,7 @@ const RestaurantMenu = () => {
             onClick={() => navigate("/menu")}
             className="text-orange-400 font-semibold hover:underline"
           >
-            ← Back
+            <ArrowLeft/> Back
           </button>
           {restaurant?.image_url && (
             <img
@@ -97,8 +116,15 @@ const RestaurantMenu = () => {
                   {item.description && (
                     <p className="text-gray-400 text-xs mt-1">{item.description}</p>
                   )}
-                  <button className="w-full mt-3 bg-orange-400 hover:bg-orange-500 text-white py-2 rounded-xl text-sm font-semibold">
-                    Add to Cart
+                  <button
+                    onClick={() => handleAddToCart(item)}
+                    className={`w-full mt-3 py-2 rounded-xl text-sm font-semibold transition
+                      ${addedItems[item.id]
+                        ? "bg-green-500 text-white"
+                        : "bg-orange-400 hover:bg-orange-500 text-white"
+                      }`}
+                  >
+                    {addedItems[item.id] ? "Added ✓" : "Add to Cart"}
                   </button>
                 </div>
               </div>
