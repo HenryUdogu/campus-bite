@@ -8,7 +8,7 @@ import CheckOut from "./pages/CheckOut";
 import VendorSignup from "./pages/VendorSignup";
 import RiderSignup from "./pages/RiderSignup";
 import VendorDashboard from "./pages/VendorDashboard";
-import DashboardHome from  "./components/vendor/DashboardHome";
+import DashboardHome from "./components/vendor/DashboardHome";
 import VendorMenu from "./components/vendor/VendorMenu";
 import VendorOrders from "./components/vendor/VendorOrders";
 import VendorHistory from "./components/vendor/VendorHistory";
@@ -16,6 +16,13 @@ import VendorProfile from "./components/vendor/VendorProfile";
 import VendorRestaurant from "./components/vendor/VendorRestaurant";
 import RestaurantMenu from "./pages/RestaurantMenu";
 import Orders from "./pages/Orders";
+import RiderDashboard from "./pages/RiderDashboard";
+import RiderDashboardHome from "./components/rider/RiderDashboardHome";
+import RiderAvailable from "./components/rider/RiderAvailable";
+import RiderActive from "./components/rider/RiderActive";
+import RiderHistory from "./components/rider/RiderHistory";
+import RiderProfile from "./components/rider/RiderProfile";
+
 const App = () => {
   return (
     <Router>
@@ -38,6 +45,13 @@ const App = () => {
         </Route>
         <Route path="/menu/:id" element={<RestaurantMenu />} />
         <Route path="/orders" element={<Orders />} />
+        <Route path="/rider-dashboard" element={<RiderDashboard />}>
+          <Route index element={<RiderDashboardHome />} />
+          <Route path="available" element={<RiderAvailable />} />
+          <Route path="active" element={<RiderActive />} />
+          <Route path="history" element={<RiderHistory />} />
+          <Route path="profile" element={<RiderProfile />} />
+        </Route>
       </Routes>
     </Router>
   );
