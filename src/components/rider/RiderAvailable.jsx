@@ -9,7 +9,9 @@ const RiderAvailable = () => {
 
   useEffect(() => {
     const fetchOrders = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
       if (!session) return;
 
       const { data: rider } = await supabase
@@ -23,11 +25,13 @@ const RiderAvailable = () => {
 
         const { data, error } = await supabase
           .from("orders")
-          .select(`
+          .select(
+            `
             *,
             restaurants ( name ),
             users ( first_name, last_name )
-          `)
+          `,
+          )
           .eq("status", "ready")
           .is("rider_id", null)
           .order("created_at", { ascending: false });
@@ -63,7 +67,9 @@ const RiderAvailable = () => {
     <div>
       <h2 className="text-2xl font-bold mb-6">Available Orders</h2>
 
-      {error && <p className="text-red-500 text-sm font-semibold mb-4">{error}</p>}
+      {error && (
+        <p className="text-red-500 text-sm font-semibold mb-4">{error}</p>
+      )}
 
       {orders.length === 0 ? (
         <div className="bg-white rounded-2xl p-10 shadow-sm text-center">
@@ -88,7 +94,9 @@ const RiderAvailable = () => {
                     Address: {order.delivery_address}
                   </p>
                 </div>
-                <p className="font-bold text-orange-400 text-lg">₦{order.total}</p>
+                <p className="font-bold text-orange-400 text-lg">
+                  ₦{order.total}
+                </p>
               </div>
 
               <button
