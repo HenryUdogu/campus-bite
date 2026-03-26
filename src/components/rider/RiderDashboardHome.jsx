@@ -3,8 +3,7 @@ import { supabase } from "../../supabaseClient";
 
 const RiderDashboardHome = () => {
   const [riderName, setRiderName] = useState("");
-  const [riderId, setRiderId] = useState(null);
-  const [completedToday, setCompletedToday] = useState(0);
+  const [availableOrders, setAvailableOrders] = useState(0);
   const [totalDeliveries, setTotalDeliveries] = useState(0);
   const [activeOrder, setActiveOrder] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -31,20 +30,16 @@ const RiderDashboardHome = () => {
         .single();
 
       if (rider) {
-        setRiderId(rider.id);
-
-        const today = new Date().toISOString().split("T")[0];
-
-        const { count: todayCount } = await supabase
+        
+        const { count: availableCount } = await supabase
           .from("orders")
           .select("*", { count: "exact", head: true })
-          .eq("rider_id", rider.id)
-          .eq("status", "delivered")
-          .gte("created_at", `${today}T00:00:00`)
-          .lte("created_at", `${today}T23:59:59`);
+          .eq("status", "ready")
+          .is("rider_id", null);
 
-        setCompletedToday(todayCount || 0);
+        setAvailableOrders(availableCount || 0);
 
+        
         const { count: totalCount } = await supabase
           .from("orders")
           .select("*", { count: "exact", head: true })
@@ -53,6 +48,7 @@ const RiderDashboardHome = () => {
 
         setTotalDeliveries(totalCount || 0);
 
+        
         const { data: active } = await supabase
           .from("orders")
           .select(`*, restaurants ( name )`)
@@ -72,13 +68,13 @@ const RiderDashboardHome = () => {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-2">Welcome, {riderName} 👋</h2>
+      <h2 className="text-2xl font-bold mb-2">Welcome, {riderName} </h2>
       <p className="text-gray-500 mb-8">Here's your delivery overview.</p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
         <div className="bg-white rounded-2xl p-6 shadow-sm">
-          <p className="text-gray-500 text-sm">Completed Today</p>
-          <h3 className="text-3xl font-bold text-orange-400 mt-2">{completedToday}</h3>
+          <p className="text-gray-500 text-sm">Available Orders</p>
+          <h3 className="text-3xl font-bold text-orange-400 mt-2">{availableOrders}</h3>
         </div>
 
         <div className="bg-white rounded-2xl p-6 shadow-sm">
@@ -88,8 +84,12 @@ const RiderDashboardHome = () => {
 
         <div className="bg-white rounded-2xl p-6 shadow-sm">
           <p className="text-gray-500 text-sm">Status</p>
-          <h3 className="text-lg font-bold text-green-500 mt-2">
-            {activeOrder ? "On Delivery 🛵" : "Available ✅"}
+          <h3 className="text-lg font-bold mt-2">
+            {activeOrder ? (
+              <span className="text-orange-400">On Delivery </span>
+            ) : (
+              <span className="text-green-500">Available </span>
+            )}
           </h3>
         </div>
       </div>
