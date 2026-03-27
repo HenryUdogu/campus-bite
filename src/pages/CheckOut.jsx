@@ -1,17 +1,28 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { supabase } from "../supabaseClient";
 import { useCart } from "../context/CartContext";
 import MenuTop from "../components/MenuTop";
 
+const DELIVERY_FEE = 200;
+
 const CheckOut = () => {
-  const { cartItems, cartTotal, clearCart } = useCart();
+  const { cartItems, cartTotal } = useCart();
   const navigate = useNavigate();
+  const location = useLocation();
+
   const [deliveryAddress, setDeliveryAddress] = useState("");
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
 
+  // ── Restore delivery address if user navigated back from Payment ──────────
+  useEffect(() => {
+    if (location.state?.restore?.deliveryAddress) {
+      setDeliveryAddress(location.state.restore.deliveryAddress);
+    }
+  }, [location.state]);
+
+  // ── Auth guard ────────────────────────────────────────────────────────────
   useEffect(() => {
     const checkSession = async () => {
       const {
@@ -24,79 +35,29 @@ const CheckOut = () => {
     checkSession();
   }, [navigate]);
 
+  // ── Redirect to cart if empty ─────────────────────────────────────────────
   useEffect(() => {
     if (cartItems.length === 0) {
       navigate("/cart");
     }
   }, [cartItems, navigate]);
 
-  async function handlePlaceOrder() {
-    if (!deliveryAddress) {
+  // ── Validate then hand off to Payment page ────────────────────────────────
+  function handlePlaceOrder() {
+    if (!deliveryAddress.trim()) {
       setError("Please enter a delivery address");
       return;
     }
 
-    setLoading(true);
     setError(null);
 
-    const {
-      data: { session },
-    } = await supabase.auth.getSession();
-
-    // Get student id
-    const { data: student } = await supabase
-      .from("users")
-      .select("id")
-      .eq("id", session.user.id)
-      .single();
-
-    // Get vendor id from first cart item
-    const vendorId = cartItems[0].vendor_id;
-
-    // Get restaurant id from first cart item
-    const restaurantId = cartItems[0].restaurant_id;
-
-    // Step 1 - Create order
-    const { data: order, error: orderError } = await supabase
-      .from("orders")
-      .insert({
-        student_id: student.id,
-        vendor_id: vendorId,
-        restaurant_id: restaurantId,
-        total: cartTotal,
-        delivery_address: deliveryAddress,
-        status: "pending",
-      })
-      .select()
-      .single();
-
-    if (orderError) {
-      setError(orderError.message);
-      setLoading(false);
-      return;
-    }
-
-    // Step 2 - Create order items
-    const orderItems = cartItems.map((item) => ({
-      order_id: order.id,
-      menu_item_id: item.id,
-      quantity: item.quantity,
-      price: item.price,
-    }));
-
-    const { error: itemsError } = await supabase
-      .from("order_items")
-      .insert(orderItems);
-
-    if (itemsError) {
-      setError(itemsError.message);
-      setLoading(false);
-      return;
-    }
-
-    clearCart();
-    setLoading(false);
-    navigate("/orders");
+    navigate("/payment", {
+      state: {
+        cartItems,
+        cartTotal,
+        deliveryAddress: deliveryAddress.trim(),
+      },
+    });
   }
 
   return (
@@ -143,19 +104,28 @@ const CheckOut = () => {
                 ))}
               </div>
 
-              <div className="border-t pt-4 mb-6">
-                <div className="flex justify-between font-bold text-lg">
+              <div className="border-t pt-4 mb-6 flex flex-col gap-2">
+                <div className="flex justify-between text-sm text-gray-500">
+                  <span>Subtotal</span>
+                  <span>₦{cartTotal}</span>
+                </div>
+                <div className="flex justify-between text-sm text-gray-500">
+                  <span>Delivery Fee</span>
+                  <span>₦{DELIVERY_FEE}</span>
+                </div>
+                <div className="flex justify-between font-bold text-lg border-t pt-2 mt-1">
                   <span>Total</span>
-                  <span className="text-orange-400">₦{cartTotal}</span>
+                  <span className="text-orange-400">
+                    ₦{cartTotal + DELIVERY_FEE}
+                  </span>
                 </div>
               </div>
 
               <button
                 onClick={handlePlaceOrder}
-                disabled={loading}
                 className="w-full min-h-[48px] bg-orange-400 hover:bg-orange-500 text-white rounded-xl font-bold text-lg"
               >
-                {loading ? "Placing Order..." : "Place Order"}
+                Place Order
               </button>
 
               <button
